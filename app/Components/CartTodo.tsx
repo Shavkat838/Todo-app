@@ -51,7 +51,7 @@ function boshlangich(item:Todo){
 
 
   return (
-    <div className="max-w-[270px] w-full h-[190px] rounded-[12px] bg-[#2C2C2C] p-[16px] !shadow-md ">
+    <div className="sm:max-w-[270px]  max-w-[300px] w-full h-[190px] rounded-[12px] bg-[#2C2C2C] p-[16px] !shadow-md ">
       <div className="flex flex-col  justify-between h-[130px] ">
         <span
           style={{ fontSize: "18px" }}

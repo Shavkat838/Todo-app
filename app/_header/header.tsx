@@ -1,15 +1,28 @@
 "use client"
 
 import useTodoStore from "@/store/todoStore";
+import { useUser } from "@clerk/nextjs";
+import Image from "next/image";
 import { FiPlus } from "react-icons/fi";
+import { UserButton } from "@clerk/nextjs";
+
 
 export default function Header() {
  const { setOpen,filter } = useTodoStore();
+ const {user}=useUser()
+
  
   return (
-    <div className="max-[1180px] h-[80px]   flex justify-between items-center">
-      <div className="max-w-[154px] w-full h-[64px] flex flex-col">
-        <span className="text-[28px] font-bold text-white ">{filter}</span>
+    <div className="max-[1180px] h-[80px]   flex  justify-between items-center">
+            <div className="max-w-[100px] sm:hidden w-full h-[50px] flex items-center gap-[10px] px-[10px] rounded-[10px]" >
+              <div className="w-[50px] h-[50px]  rounded-full flex items-center justify-center">
+                {user&& (
+                  < UserButton  />
+                )}
+              </div>
+            </div>
+      <div className="max-w-[154px] w-full h-[64px] flex flex-col justify-center">
+        <span className=" text-[22px] sm:text-[28px] font-bold text-white ">{filter}</span>
         <div className="max-w-[112px] w-full h-[8px] bg-white rounded-[10px] "></div>
       </div>
       <div

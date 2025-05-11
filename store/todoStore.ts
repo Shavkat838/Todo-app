@@ -9,6 +9,8 @@ type Store = {
   date:string;
   isImportant:boolean;
   isCompleted:boolean;
+  openSidebar:boolean;
+  setOpenSidebar:()=>void;
   setFilter:(item:string)=>void;
   setEditingId:(item:number)=>void;
   setImportant:(item:boolean)=>void;
@@ -30,6 +32,8 @@ const useTodoStore = create<Store>()((set) => ({
   description:"",
   isImportant:false,
   isCompleted:false,
+  openSidebar:false,
+  setOpenSidebar:()=>set((state)=>({openSidebar:!state.openSidebar})),
   setFilter:(item)=>set(()=>({filter:item})),
   setEditingId:(item)=>set(()=>({editingId:item})),
   setCompleted:(item)=>set(()=>({isCompleted:item})),

@@ -23,7 +23,7 @@ const data:Todo[]=await prisma.todos.findMany({
  
  
   return (
-    <div className="max-w-[1220px] w-full px-[16px] min-h-auto border-2 pt-1 border-[#1F1F1F] rounded-[15px] bg-neutral-900">
+    <div className="max-w-[1220px] w-full px-[16px] min-h-screen border-2 pt-1 border-[#1F1F1F] rounded-[15px] bg-neutral-900">
       <Header />
       <Body body={data} />
       <Modal />

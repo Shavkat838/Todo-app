@@ -7,6 +7,7 @@ import SideBar from "./Components/Side-bar";
 import { ClerkProvider} from "@clerk/nextjs"
 
 import { usePathname } from "next/navigation";
+import FooterPage from "./footer/page";
 
 
 const geistSans = Geist({
@@ -42,10 +43,11 @@ export default  function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <div className=" bg-neutral-950 min-h-screen flex  pt-[20px] ">
-            <div className="max-w-[1460px] mx-auto  w-full min-h-[70vh] flex gap-[50px]">
+          <div className=" bg-neutral-950  min-h-screen flex  pt-[20px] ">
+            <div className="max-w-[1460px] mx-auto relative  w-full min-h-[70vh] sm:flex gap-[50px]">
               {!blockedPages.includes(pathname) ? <SideBar /> : ""}
               {children}
+              < FooterPage />
             </div>
           </div>
         </body>

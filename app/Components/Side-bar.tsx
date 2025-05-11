@@ -12,7 +12,7 @@ export default function SideBar() {
   const {filter,setFilter}=useTodoStore()
   const {user}=useUser()
   return (
-    <div className="max-w-[256px] hidden  min-h-auto border-2 border-[#1F1F1F] rounded-[15px] bg-neutral-900  sm:flex flex-col items-center pt-[40px] w-full">
+    <div className={`max-w-[256px]  hidden   min-h-auto border-2 border-[#1F1F1F] rounded-[15px] bg-neutral-900  sm:flex flex-col items-center pt-[40px] w-full`}>
       <div className="max-w-[200px] w-full h-[70px] flex items-center gap-[10px] px-[10px]  bg-neutral-800 rounded-[10px]" >
         <div className="w-[50px] h-[50px]  rounded-full border">
           {user?.imageUrl && (
@@ -32,7 +32,7 @@ export default function SideBar() {
       <div className="max-w-[256px] w-full h-[300px] flex flex-col  mt-[200px] ">
         <div
           onClick={() => setFilter("ALL")}
-          className={`max-w-[2560px]  ${
+          className={`max-w-[256px]  ${
             filter === "ALL" ? "bg-[#2C2C2C]" : ""
           } group cursor-pointer h-[50px] w-full  flex items-center justify-center`}
         >
@@ -48,7 +48,7 @@ export default function SideBar() {
         </div>
         <div
           onClick={() => setFilter("IMPORTANT")}
-          className={`max-w-[2560px]  ${
+          className={`max-w-[256px]  ${
             filter === "IMPORTANT" ? "bg-[#2C2C2C]" : ""
           } group cursor-pointer h-[50px] w-full  flex items-center justify-center`}
         >
@@ -64,7 +64,7 @@ export default function SideBar() {
         </div>
         <div
           onClick={() => setFilter("COMPLETED")}
-          className={`max-w-[2560px]  ${
+          className={`max-w-[256px]  ${
             filter === "COMPLETED" ? "bg-[#2C2C2C]" : ""
           } group cursor-pointer h-[50px] w-full  flex items-center justify-center`}
         >
@@ -80,7 +80,7 @@ export default function SideBar() {
         </div>
         <div
           onClick={() => setFilter("NOW")}
-          className={`max-w-[2560px]  ${
+          className={`max-w-[256px]  ${
             filter === "NOW" ? "bg-[#2C2C2C]" : ""
           } group cursor-pointer h-[50px] w-full  flex items-center justify-center`}
         >

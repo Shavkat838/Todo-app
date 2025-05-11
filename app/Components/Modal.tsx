@@ -77,14 +77,14 @@ export default function Modal() {
   return (
     <div>
       <AlertDialog open={open}>
-        <AlertDialogContent className="max-w-[550px] w-full  !shadow-md bg-neutral-900   rounded-[20px]    p-[40px]">
+        <AlertDialogContent className="max-w-[350px]  sm:max-w-[550px] w-full  !shadow-md bg-neutral-900   rounded-[20px]    p-[40px]">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-center text-[24px] text-white font-bold ">
               Create task
             </AlertDialogTitle>
             <AlertDialogDescription className="mt-[40px] flex flex-col gap-[12px] sm:mt-[53px]">
               <>
-                <span className="text-[20px] text-white text-left   font-medium ">
+                <span className=" text-[14px] sm:text-[20px] text-white text-left   font-medium ">
                   Title
                 </span>
                 <input
@@ -96,7 +96,7 @@ export default function Modal() {
                 />
               </>
               <>
-                <span className="text-[20px] text-left   text-white  font-medium ">
+                <span className=" text-[14px] sm:text-[20px] text-left   text-white  font-medium ">
                   Description
                 </span>
                 <input
@@ -108,7 +108,7 @@ export default function Modal() {
                 />
               </>
               <>
-                <span className="text-[20px]  text-left text-white  font-medium ">
+                <span className=" text-[14px] sm:text-[20px]  text-left text-white  font-medium ">
                   Date
                 </span>
                 <input

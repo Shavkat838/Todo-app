@@ -2,16 +2,17 @@ import prisma from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 
 
 export async function DELETE(request:NextRequest,{params}:Props){
+  const id=(await params).id
   try {
       const data= await prisma.todos.delete({
         where:{
-          id:parseInt(params.id)
+          id:parseInt(id)
         }
        })
        return NextResponse.json(data)
@@ -22,10 +23,11 @@ export async function DELETE(request:NextRequest,{params}:Props){
 
 
 export async function PUT(request:NextRequest,{params}:Props){
+  const id = (await params).id;
   try {
     const obj=await request.json()
     const data=await prisma.todos.update({
-      where:{id:parseInt(params.id)},
+      where:{id:parseInt(id)},
         data:obj
     })
     return NextResponse.json(data)

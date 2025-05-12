@@ -40,6 +40,7 @@ export default function Modal() {
                userId:user.id
              });
              setEditingId(-1)
+             router.refresh();
            } catch (error) {
              console.log(error);
            }
@@ -53,11 +54,12 @@ export default function Modal() {
            isImportant,
            userId:user.id,
          });
+         router.refresh();
        } catch (error) {
          console.log(error);
        }
     }
-             router.refresh();
+             
              setClose();
              clearForm();
    

@@ -53,7 +53,6 @@ export default function Modal() {
            isImportant,
            userId:user.id,
          });
-         setFilter("ALL")
        } catch (error) {
          console.log(error);
        }

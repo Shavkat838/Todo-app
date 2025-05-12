@@ -28,9 +28,9 @@ export default function FooterPage() {
         </span>
       </span>
       <span
-        onClick={() => setFilter("COMPLATED")}
+        onClick={() => setFilter("COMPLETED")}
         className={`max-w-[200px]  ${
-          filter === "COMPLATED" ? "" : ""
+          filter === "COMPLETED" ? "" : ""
         } group cursor-pointer h-[50px] w-full  flex items-center justify-center`}
       >
         <span className="text-[white] text-[14px] group-hover:text-white ">

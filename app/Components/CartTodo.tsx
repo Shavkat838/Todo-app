@@ -25,7 +25,6 @@ export default function CartTodo({item}:Props) {
 
 
   async function handleDelete(id:number){
-    console.log(id)
    try {
     await axios.delete(`api/todos/${id}`)
     router.refresh()

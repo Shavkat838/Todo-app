@@ -43,11 +43,11 @@ export default  function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <div className=" bg-neutral-950  min-h-screen flex  pt-[20px] ">
+          <div className="bg-neutral-950  min-h-screen flex  pt-[20px] ">
             <div className="max-w-[1460px] mx-auto relative  w-full min-h-[70vh] sm:flex gap-[50px]">
               {!blockedPages.includes(pathname) ? <SideBar /> : ""}
               {children}
-              < FooterPage />
+              {!blockedPages.includes(pathname) ? <FooterPage/> : ""}
             </div>
           </div>
         </body>

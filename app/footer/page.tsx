@@ -1,7 +1,7 @@
 'use client'
 
 import useTodoStore from "@/store/todoStore"
-import { IoMdHome } from "react-icons/io"
+
 
 export default function FooterPage() {
    const {setFilter,filter}=useTodoStore()

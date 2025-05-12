@@ -16,7 +16,7 @@ export async function DELETE(request:NextRequest,{params}:Props){
        })
        return NextResponse.json(data)
   } catch (error) {
-    return new NextResponse("Internal server error",{status:500})
+    return new NextResponse(`Internal server error${error}`,{status:500})
   }
 }
 
@@ -30,6 +30,6 @@ export async function PUT(request:NextRequest,{params}:Props){
     })
     return NextResponse.json(data)
   } catch (error) {
-    return new NextResponse("Internal server Error",{status:500})
+    return new NextResponse(`Internal server Error${error}`,{status:500})
   }
 }

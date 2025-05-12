@@ -18,6 +18,6 @@ import { NextRequest, NextResponse } from "next/server";
         })
         return NextResponse.json(data,{status:201})
     } catch (error) {
-        return new NextResponse("Internal server Error!",{status:500})
+        return new NextResponse(`Internal server Error! ${error}`,{status:500})
     }
 }

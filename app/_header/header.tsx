@@ -2,7 +2,7 @@
 
 import useTodoStore from "@/store/todoStore";
 import { useUser } from "@clerk/nextjs";
-import Image from "next/image";
+
 import { FiPlus } from "react-icons/fi";
 import { UserButton } from "@clerk/nextjs";
 

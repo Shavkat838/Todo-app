@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import useTodoStore from "@/store/todoStore";
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
@@ -7,13 +7,14 @@ import { HiMiniCheck } from "react-icons/hi2";
 import { IoMdHome } from "react-icons/io";
 import { RiMenu2Fill } from "react-icons/ri";
 
-
 export default function SideBar() {
-  const {filter,setFilter}=useTodoStore()
-  const {user}=useUser()
+  const { filter, setFilter } = useTodoStore();
+  const { user } = useUser();
   return (
-    <div className={`max-w-[256px]  hidden   min-h-auto border-2 border-[#1F1F1F] rounded-[15px] bg-neutral-900  sm:flex flex-col items-center pt-[40px] w-full`}>
-      <div className="max-w-[200px] w-full h-[70px] flex items-center gap-[10px] px-[10px]  bg-neutral-800 rounded-[10px]" >
+    <div
+      className={`max-w-[256px]  hidden   min-h-auto border-2 border-[#1F1F1F] rounded-[15px] bg-neutral-900  sm:flex flex-col items-center pt-[40px] w-full`}
+    >
+      <div className="max-w-[200px] w-full h-[70px] flex items-center gap-[10px] px-[10px]  bg-neutral-800 rounded-[10px]">
         <div className="w-[50px] h-[50px]  rounded-full border">
           {user?.imageUrl && (
             <Image

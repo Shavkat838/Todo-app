@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -8,72 +8,102 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-
 } from "@/components/ui/alert-dialog";
 import useTodoStore from "@/store/todoStore";
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-
-
-
+import { useState } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function Modal() {
-  const {open,setClose,date,setEditingId,setFilter,description,editingId,setDate,setDescription,setTitle,title,isCompleted,isImportant,setCompleted,setImportant}=useTodoStore()
-  const router=useRouter()
-  const {user}= useUser()
-  
-   async function handleSave(){
+  const {
+    open,
+    setClose,
+    date,
+    setEditingId,
+    setFilter,
+    description,
+    editingId,
+    setDate,
+    setDescription,
+    setTitle,
+    title,
+    isCompleted,
+    isImportant,
+    setCompleted,
+    setImportant,
+  } = useTodoStore();
+  const router = useRouter();
+  const [saveloading,setSaveLoading]=useState(false)
+  const [editloading,setEditLoading]=useState(false)
+  const { user } = useUser();
 
-    if(!user){
-      router.push("/sign-in")
-      return
+  async function handleSave() {
+    if (!user) {
+      router.push("/sign-in");
+      return;
     }
-    if (editingId!==-1) {
+    if (editingId !== -1) {
       try {
-       await axios.put(`/api/todos/${editingId}`, {
-               title,
-               description,
-               date: new Date(date),
-               isCompleted,
-               isImportant,
-               userId:user.id
-             });
-             setEditingId(-1)
-             router.refresh();
-           } catch (error) {
-             console.log(error);
-           }
+        setEditLoading(true)
+       const res= await axios.put(`/api/todos/${editingId}`, {
+          title,
+          description,
+          date: new Date(date),
+          isCompleted,
+          isImportant,
+          userId: user.id,
+        });
+
+        if(!res.data){
+          return  alert("edit qilishda xatolik")
+        }
+        setEditLoading(false)
+        setEditingId(-1);
+        router.refresh();
+      } catch (error) {
+        setEditLoading(false)
+        console.log(error);
+      }
     } else {
-       try {
-         axios.post("/api/todos", {
-           title,
-           description,
-           date: new Date(date),
-           isCompleted,
-           isImportant,
-           userId:user.id,
-         });
-         router.refresh();
-       } catch (error) {
-         console.log(error);
-       }
+      try {
+
+        if(title===""||description===""||date===""){
+          alert("Iltimos forma malumotlarini kiritishingiz kerak!")
+          return
+        }
+        setSaveLoading(true)
+       const res= await axios.post("/api/todos", {
+          title,
+          description,
+          date: new Date(date),
+          isCompleted,
+          isImportant,
+          userId: user.id,
+        });
+      if (!res.data){
+           return alert("qoshishda xatolik")
+      }
+
+      setSaveLoading(false)
+        router.refresh();
+      } catch (error) {
+        console.log(error);
+      }
     }
-             
-             setClose();
-             clearForm();
-   
-   }
 
-
-   function clearForm(){
-    setCompleted(false)
-    setDate("")
-    setDescription("")
-    setImportant(false)
-    setTitle("")
+    setClose();
+    clearForm();
   }
 
+  function clearForm() {
+    setCompleted(false);
+    setDate("");
+    setDescription("");
+    setImportant(false);
+    setTitle("");
+  }
 
   return (
     <div>
@@ -121,14 +151,18 @@ export default function Modal() {
                 />
               </>
               <span className="flex items-center justify-between">
-                  <span className="text-white">Togle Important</span>
-                  <input
-                    checked={isImportant}
-                    onChange={(e) => setImportant(e.target.checked)}
-                    type="checkbox"
-                  />
+                <span className="text-white">Togle Important</span>
+                <input
+                  checked={isImportant}
+                  onChange={(e) => setImportant(e.target.checked)}
+                  type="checkbox"
+                />
               </span>
-              <span className={`${editingId===-1?"hidden":"block"}   flex flex-col gap-2`} >
+              <span
+                className={`${
+                  editingId === -1 ? "hidden" : "block"
+                }   flex flex-col gap-2`}
+              >
                 <span className="flex items-center justify-between">
                   <span className="text-white">Togle Completed</span>
                   <input
@@ -144,8 +178,14 @@ export default function Modal() {
             <AlertDialogCancel onClick={() => setClose()}>
               Close
             </AlertDialogCancel>
-            <AlertDialogAction onClick={handleSave} className="rounded-[30px]">
-               { editingId===-1? "+ Create Task" :"Edit Task"}
+            <AlertDialogAction onClick={handleSave} className="rounded-[30px] flex items-center justify-center " >
+              {saveloading || editloading ? (
+                <AiOutlineLoading3Quarters size={30} className="animate-spin" />
+              ) : editingId === -1 ? (
+                "+ Create Task"
+              ) : (
+                "Edit Task"
+              )}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -153,7 +193,3 @@ export default function Modal() {
     </div>
   );
 }
-
-
-
-

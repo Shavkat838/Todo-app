@@ -28,9 +28,9 @@ export default function Body({ body }: Props) {
     }, 5000);
   },[])
 
-  const [loading,setLoading]=useState(true)
+  const [loading,setLoading,]=useState(true)
 
-  const { setOpen, filter, } = useTodoStore();
+  const { setOpen, filter,searchvalue } = useTodoStore();
   const today = new Date().toISOString().split("T")[0];
 
   if (loading){
@@ -42,18 +42,22 @@ export default function Body({ body }: Props) {
   }
   return (
     <div className="max-w-[1220px]  w-full grid  z-0   grid-1 sm:grid-cols-4 gap-2 pt-[10px] ">
-      {(
-        body
-          .filter((item) => {
-            if (filter === "ALL") return true;
-            if (filter === "COMPLETED") return item.isCompleted;
-            if (filter === "IMPORTANT") return item.isImportant;
-            if (filter === "NOW")
-              return item.date.toISOString().split("T")[0] === today;
-            return false;
-          })
-          .map((item) => <CartTodo key={item.id} item={item} />)
-      )}
+      {searchvalue !== ""
+        ? body
+            .filter((item) =>
+              item.title.toLowerCase().includes(searchvalue.toLowerCase())
+            )
+            .map((item) => <CartTodo key={item.id} item={item} />)
+        : body
+            .filter((item) => {
+              if (filter === "ALL") return true;
+              if (filter === "COMPLETED") return item.isCompleted;
+              if (filter === "IMPORTANT") return item.isImportant;
+              if (filter === "NOW")
+                return item.date.toISOString().split("T")[0] === today;
+              return false;
+            })
+            .map((item) => <CartTodo key={item.id} item={item} />)}
       <div className="sm:max-w-[270px]  max-w-[360px] mx-auto sm:mx-0 w-full h-[190px] rounded-[12px] flex items-center justify-center bg-[#2C2C2C] p-[16px] shadow-md ">
         <div
           onClick={() => setOpen()}

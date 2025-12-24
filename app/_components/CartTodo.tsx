@@ -61,7 +61,7 @@ export default function CartTodo({ item }: Props) {
 
   return (
     <div className="sm:max-w-[270px] mx-auto sm:mx-0  max-w-[360px] w-full h-[190px] rounded-[12px] bg-[#2C2C2C] p-[16px] !shadow-md ">
-      <div className="flex flex-col  justify-between h-[130px] shadow-md ">
+      <div className="flex flex-col  justify-between h-[130px]  ">
         <span
           style={{ fontSize: "18px" }}
           className="text-white  line-clamp-1 font-medium "

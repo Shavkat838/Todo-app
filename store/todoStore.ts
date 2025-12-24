@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+
 
 export type ModeType = "KUN" | "TUN";
 
@@ -14,8 +14,10 @@ type Store = {
   isImportant: boolean;
   isCompleted: boolean;
   openSidebar: boolean;
+  searchvalue:string;
   ismode: ModeType;
   setOpenSidebar: () => void;
+  setSearchValue:(item:string)=>void
   setModePage: (item: ModeType) => void;
   setFilter: (item: string) => void;
   setEditingId: (item: number) => void;
@@ -32,6 +34,7 @@ const useTodoStore = create<Store>()(
     (set) => ({
       open: false,
       todos:[],
+      searchvalue:"",
       filter: "ALL",
       ismode: "KUN",
       hasHydrated: false,
@@ -42,8 +45,7 @@ const useTodoStore = create<Store>()(
       isImportant: false,
       isCompleted: false,
       openSidebar: false,
-
-      
+      setSearchValue:(item)=>set({searchvalue:item}),
       setModePage: (item) => set({ ismode: item }),
       setOpenSidebar: () =>
       set((state) => ({ openSidebar: !state.openSidebar })),
@@ -56,7 +58,7 @@ const useTodoStore = create<Store>()(
       setDescription: (item) => set({ description: item }),
       setOpen: () => set({ open: true }),
       setClose: () =>
-        set({
+      set({
           editingId: -1,
           title: "",
           description: "",
@@ -64,7 +66,7 @@ const useTodoStore = create<Store>()(
           isImportant: false,
           date: "",
           open: false,
-        }),
+      }),
     }),
 );
 

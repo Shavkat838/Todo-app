@@ -22,7 +22,6 @@ export default function Modal() {
     setClose,
     date,
     setEditingId,
-    setFilter,
     description,
     editingId,
     setDate,
